@@ -2,6 +2,7 @@ package com.ianlin.RNCarrierInfo;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
+import android.telephony.gsm.GsmCellLocation;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -77,6 +78,17 @@ public class RNCarrierInfoModule extends ReactContextBaseJavaModule {
             promise.resolve(plmn);
         } else {
             promise.reject(E_NO_NETWORK_OPERATOR, "No mobile network operator");
+        }
+    }
+    
+    // Return Lac + Cid
+    @ReactMethod
+    public void lacCid(Promise promise) {
+        if (mTelephonyManager.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
+            final GsmCellLocation location = (GsmCellLocation) mTelephonyManager.getCellLocation();
+            if (location != null) {
+                promise.resolve("" + location.getLac() + location.getCid());
+            }
         }
     }
 }
