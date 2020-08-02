@@ -32,4 +32,9 @@ export default class CarrierInfo {
 	static async mobileNetworkOperator() {
 		return await _CarrierInfo.mobileNetworkOperator();
 	}
+	
+	static async lacCid(){
+		if (Platform.OS == 'ios') return null;
+		return await _CarrierInfo.lacCid();
+	}
 }
