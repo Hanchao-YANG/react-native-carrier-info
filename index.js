@@ -33,8 +33,13 @@ export default class CarrierInfo {
 		return await _CarrierInfo.mobileNetworkOperator();
 	}
 	
-	static async lacCid(){
+	static async getCid(){
 		if (Platform.OS == 'ios') return null;
-		return await _CarrierInfo.lacCid();
+		return await _CarrierInfo.getCid();
+	}
+
+	static async getLac(){
+		if (Platform.OS == 'ios') return null;
+		return await _CarrierInfo.getLac();
 	}
 }

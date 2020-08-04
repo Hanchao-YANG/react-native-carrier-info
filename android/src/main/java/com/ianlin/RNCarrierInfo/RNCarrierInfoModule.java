@@ -83,11 +83,21 @@ public class RNCarrierInfoModule extends ReactContextBaseJavaModule {
     
     // Return Lac + Cid
     @ReactMethod
-    public void lacCid(Promise promise) {
+    public void getCid(Promise promise) {
         if (mTelephonyManager.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
             final GsmCellLocation location = (GsmCellLocation) mTelephonyManager.getCellLocation();
             if (location != null) {
-                promise.resolve("" + location.getLac() + location.getCid());
+                promise.resolve("" + location.getCid());
+            }
+        }
+    }
+
+    @ReactMethod
+    public void getLac(Promise promise) {
+        if (mTelephonyManager.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
+            final GsmCellLocation location = (GsmCellLocation) mTelephonyManager.getCellLocation();
+            if (location != null) {
+                promise.resolve("" + location.getLac());
             }
         }
     }
