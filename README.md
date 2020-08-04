@@ -1,6 +1,6 @@
 # React Native Carrier Info
 
-lacCid method was added in this package comparing with the orignal one.
+getLac(), getCid() methods are added to the pacakge
 
 [![npm version](https://badge.fury.io/js/react-native-carrier-info.svg)](https://badge.fury.io/js/react-native-carrier-info)
 [![npm downloads](https://img.shields.io/npm/dm/react-native-carrier-info.svg?maxAge=2592000)](https://img.shields.io/npm/dm/react-native-carrier-info.svg?maxAge=2592000)
