@@ -16,6 +16,7 @@ public class RNCarrierInfoModule extends ReactContextBaseJavaModule {
     private final static String E_NO_MOBILE_COUNTRY_CODE = "no_mobile_country_code";
     private final static String E_NO_MOBILE_NETWORK = "no_mobile_network";
     private final static String E_NO_NETWORK_OPERATOR = "no_network_operator";
+    private final static String E_NO_GSM_SERVICE = "no_gsm_cell_found";
     private TelephonyManager mTelephonyManager;
 
     public RNCarrierInfoModule(ReactApplicationContext reactContext) {
@@ -88,7 +89,9 @@ public class RNCarrierInfoModule extends ReactContextBaseJavaModule {
             final GsmCellLocation location = (GsmCellLocation) mTelephonyManager.getCellLocation();
             if (location != null) {
                 promise.resolve("" + location.getCid());
-            }
+            } else{ promise.reject(E_NO_GSM_SERVICE, "No base station found"); }
+        } else{
+            promise.reject(E_NO_GSM_SERVICE, "No base station found");
         }
     }
 
@@ -98,7 +101,9 @@ public class RNCarrierInfoModule extends ReactContextBaseJavaModule {
             final GsmCellLocation location = (GsmCellLocation) mTelephonyManager.getCellLocation();
             if (location != null) {
                 promise.resolve("" + location.getLac());
-            }
+            } else{ promise.reject("NO GSM CELL FOUND!", "No base station found"); }
+        } else{
+            promise.reject("NO GSM CELL FOUND!", "No base station found");
         }
     }
 }
